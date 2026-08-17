@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>منصتي التعليمية</title>
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="authPage">
+
+    <div class="auth-box">
+
+        <div class="logo">📚</div>
+
+        <h1>منصتي التعليمية</h1>
+
+        <p class="subtitle">
+            تعلم • اختبر • تابع تقدمك
+        </p>
+
+        <div class="tabs">
+
+            <button class="tab active"
+                    onclick="showAuth('login',this)">
+                طالب قديم
+            </button>
+
+            <button class="tab"
+                    onclick="showAuth('register',this)">
+                طالب جديد
+            </button>
+
+        </div>
+
+
+        <!-- LOGIN -->
+
+        <div id="loginForm" class="form active">
+
+            <label>الإيميل</label>
+
+            <input
+                id="loginEmail"
+                type="email"
+                placeholder="example@gmail.com"
+            >
+
+            <label>كلمة المرور</label>
+
+            <input
+                id="loginPassword"
+                type="password"
+                placeholder="كلمة المرور"
+            >
+
+            <button class="main-btn"
+                    onclick="login()">
+                تسجيل الدخول
+            </button>
+
+            <div id="loginMessage"></div>
+
+        </div>
+
+
+        <!-- REGISTER -->
+
+        <div id="registerForm" class="form">
+
+            <label>اسم الطالب</label>
+
+            <input
+                id="registerName"
+                type="text"
+                placeholder="اكتب اسمك"
+            >
+
+            <label>الإيميل</label>
+
+            <input
+                id="registerEmail"
+                type="email"
+                placeholder="example@gmail.com"
+            >
+
+            <label>كلمة المرور</label>
+
+            <input
+                id="registerPassword"
+                type="password"
+                placeholder="6 أحرف على الأقل"
+            >
+
+            <label>تأكيد كلمة المرور</label>
+
+            <input
+                id="registerConfirm"
+                type="password"
+                placeholder="أعد كتابة كلمة المرور"
+            >
+
+            <button class="main-btn"
+                    onclick="register()">
+                إنشاء حساب
+            </button>
+
+            <div id="registerMessage"></div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<!-- ================= APP ================= -->
+
+<div id="app">
+
+    <header>
+
+        <div class="brand">
+            📚 منصتي التعليمية
+        </div>
+
+        <div class="user-area">
+
+            <span id="headerName"
+                  class="user-name">
+            </span>
+
+            <button class="logout"
+                    onclick="logout()">
+                خروج
+            </button>
+
+        </div>
+
+    </header>
+
+
+    <div class="layout">
+
+
+        <!-- SIDEBAR -->
+
+        <aside class="sidebar">
+
+            <h3>القائمة</h3>
+
+            <button class="nav-btn active"
+                    onclick="showPage('dashboard',this)">
+                🏠 الرئيسية
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('lessons',this)">
+                📚 الدروس
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('schedule',this)">
+                📅 جدولي
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('exams',this)">
+                📝 الاختبارات
+            </button>
+
+            <button class="nav-btn"
+                    onclick="showPage('grades',this)">
+                📊 درجاتي
+            </button>
+
+        </aside>
+
+
+        <!-- CONTENT -->
+
+        <main class="content">
+
+
+            <!-- ================= DASHBOARD ================= -->
+
+            <section id="dashboard"
+                     class="page active">
+
+                <div class="welcome">
+
+                    <h1>
+                        أهلاً يا
+                        <span id="welcomeName"></span>
+                        👋
+                    </h1>
+
+                    <p>
+                        تابع دروسك واختباراتك من هنا
+                    </p>
+
+                </div>
+
+
+                <div class="stats">
+
+                    <div class="stat">
+
+                        <div class="stat-icon">
+                            📖
+                        </div>
+
+                        <h2 id="watchedLessons">
+                            0
+                        </h2>
+
+                        <p>
+                            دروس شاهدتها
+                        </p>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-icon">
+                            📝
+                        </div>
+
+                        <h2 id="solvedExams">
+                            0
+                        </h2>
+
+                        <p>
+                            اختبارات محلولة
+                        </p>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-icon">
+                            🎯
+                        </div>
+
+                        <h2 id="averageGrade">
+                            0%
+                        </h2>
+
+                        <p>
+                            متوسط الدرجات
+                        </p>
+
+                    </div>
+
+
+                    <div class="stat">
+
+                        <div class="stat-icon">
+                            📚
+                        </div>
+
+                        <h2 id="totalSubjects">
+                            2
+                        </h2>
+
+                        <p>
+                            المواد
+                        </p>
+
+                    </div>
+
+                </div>
+
+
+                <div class="recent-box">
+
+                    <h2>
+                        📌 آخر نشاط
+                    </h2>
+
+                    <div id="recentActivity">
+                        لا يوجد نشاط حتى الآن.
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= LESSONS ================= -->
+
+            <section id="lessons"
+                     class="page">
+
+                <h1 class="title">
+                    📚 الدروس
+                </h1>
+
+                <div id="lessonsContainer"
+                     class="cards">
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= SCHEDULE ================= -->
+
+            <section id="schedule"
+                     class="page">
+
+                <div class="title-row">
+
+                    <h1 class="title">
+                        📅 جدولي
+                    </h1>
+
+                    <button class="add-btn"
+                            onclick="openScheduleForm()">
+                        ➕ إضافة حصة
+                    </button>
+
+                </div>
+
+
+                <div class="schedule-box">
+
+                    <table>
+
+                        <thead>
+
+                            <tr>
+
+                                <th>
+                                    اليوم
+                                </th>
+
+                                <th>
+                                    المادة
+                                </th>
+
+                                <th>
+                                    الوقت
+                                </th>
+
+                                <th>
+                                    الحالة
+                                </th>
+
+                                <th>
+                                    تعديل
+                                </th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="scheduleBody">
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= EXAMS ================= -->
+
+            <section id="exams"
+                     class="page">
+
+                <h1 class="title">
+                    📝 الاختبارات
+                </h1>
+
+                <div id="examsContainer">
+                </div>
+
+            </section>
+
+
+
+            <!-- ================= GRADES ================= -->
+
+            <section id="grades"
+                     class="page">
+
+                <h1 class="title">
+                    📊 درجاتي
+                </h1>
+
+                <div id="gradesList">
+                </div>
+
+            </section>
+
+        </main>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= LESSON MODAL ================= -->
+
+<div id="lessonModal"
+     class="modal">
+
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('lessonModal')">
+            ✕
+        </button>
+
+        <div id="lessonContent"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= EXAM MODAL ================= -->
+
+<div id="examModal"
+     class="modal">
+
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('examModal')">
+            ✕
+        </button>
+
+        <div id="examContent"></div>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= SCHEDULE MODAL ================= -->
+
+<div id="scheduleModal"
+     class="modal">
+
+    <div class="modal-box">
+
+        <button class="close"
+                onclick="closeModal('scheduleModal')">
+            ✕
+        </button>
+
+        <h2 id="scheduleFormTitle">
+            إضافة حصة
+        </h2>
+
+        <input type="hidden"
+               id="scheduleId">
+
+        <label>
+            اليوم
+        </label>
+
+        <select id="scheduleDay">
+
+            <option value="السبت">السبت</option>
+            <option value="الأحد">الأحد</option>
+            <option value="الإثنين">الإثنين</option>
+            <option value="الثلاثاء">الثلاثاء</option>
+            <option value="الأربعاء">الأربعاء</option>
+            <option value="الخميس">الخميس</option>
+            <option value="الجمعة">الجمعة</option>
+
+        </select>
+
+
+        <label>
+            المادة
+        </label>
+
+        <select id="scheduleSubject">
+
+            <option value="English">
+                English
+            </option>
+
+            <option value="German">
+                German
+            </option>
+
+        </select>
+
+
+        <label>
+            الوقت
+        </label>
+
+        <input id="scheduleTime"
+               type="time">
+
+
+        <button class="main-btn"
+                onclick="saveSchedule()">
+
+            حفظ الجدول
+
+        </button>
+
+    </div>
+
+</div>
+
+
+
+<!-- ================= NOTIFICATION ================= -->
+
+<div id="notification"
+     class="notification">
+</div>
+
+
+<script src="data.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
